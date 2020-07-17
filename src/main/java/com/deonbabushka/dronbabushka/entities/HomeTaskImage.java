@@ -13,5 +13,6 @@ public class HomeTaskImage {
     @Id
     Integer id;
     Date date;
+    String image;
     //Blob image;
 }
