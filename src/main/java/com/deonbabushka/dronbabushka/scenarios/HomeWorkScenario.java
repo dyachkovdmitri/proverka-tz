@@ -2,6 +2,7 @@ package com.deonbabushka.dronbabushka.scenarios;
 
 
 import com.deonbabushka.dronbabushka.entities.Pupil;
+import com.deonbabushka.dronbabushka.entities.User;
 import com.deonbabushka.dronbabushka.repos.ScheduleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class HomeWorkScenario {
     return 2;
     }
 
-    String onMessage(Pupil pupil, Message message) {
+    String onMessage(User pupil, Message message) {
 
         return null;
     }

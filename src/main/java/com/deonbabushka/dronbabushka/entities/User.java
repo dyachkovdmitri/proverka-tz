@@ -7,11 +7,13 @@ import javax.persistence.Id;
 import java.util.Date;
 @Data
 @Entity
-public class Parent {
+public class User {
     @Id
     Long chatId;
+    Boolean isParent;
     String name;
-    Date answer;
-    Date que;
-    String stage,userName,lastName,firstName;
+    String stage,
+            userName,
+            lastName,
+            firstName;
 }
