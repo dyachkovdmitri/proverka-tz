@@ -6,18 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Data
 @Entity
-public class Pupil {
+public class ChildToParent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
-    String name;
-    Long chatId;
-    Date lastAnswer;
-    Date lastQuestion;
-    Long interval;
-
+    Long id;
+    Long parentId;
+    Integer childId;
+    String parentNick;
+    String childNick;
 }

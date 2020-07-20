@@ -35,12 +35,5 @@ List<Integer> getPupilWithoutScreenShot(ArrayList<Integer> ids){
         end.setSeconds(59);
         return htRepo.unknownImageHomeTask(begin,end,ids);
     }
-
-
-
-
-
 }
-parseHomeWork();
-List<>getToday();
-}
+

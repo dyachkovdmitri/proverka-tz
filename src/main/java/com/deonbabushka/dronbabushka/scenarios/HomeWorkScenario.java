@@ -5,6 +5,7 @@ import com.deonbabushka.dronbabushka.entities.Pupil;
 import com.deonbabushka.dronbabushka.repos.ScheduleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,11 @@ public class HomeWorkScenario {
     }
     Integer getLessonNumberNow() {
     return 2;
+    }
+
+    String onMessage(Pupil pupil, Message message) {
+
+        return null;
     }
 
 
