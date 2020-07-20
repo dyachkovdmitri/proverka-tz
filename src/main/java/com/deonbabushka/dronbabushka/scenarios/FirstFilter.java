@@ -23,6 +23,16 @@ public class FirstFilter {
     HomeWorkScenario hwScenario;
 
     public String onMessage(Message message) {
+        Pupil pupil = pupilRepo.findOneByChatId(message.getChatId());
+        if(pupil!=null){
+            hwScenario.onMessage(pupil, message);
+        }
+        pupil = pupilRepo.findOneByUserName(message.getFrom().getUserName());
+        if(pupil!=null){
+            return meetScenario.onMessage(createNewPupil(message,pupil), message);
+        }
+
+
         Parent parent = parentRepo.findOneByChatId(message.getChatId());
         if (parent == null) { //первое сообщение
             parent = createNewParent(message, parent);
@@ -30,16 +40,24 @@ public class FirstFilter {
         } else if (!parent.getStage().equals("61september")) {//процесс знакомства
             return meetScenario.onMessage(parent, message);
         } else {
-            Pupil pupil = pupilRepo.findOneByChatId(message.getChatId());
-            return hwScenario.onMessage(pupil, message);//проверка домашнего задания
+                        return hwScenario.onMessage(pupil, message);//проверка домашнего задания
         }
+    }
+
+    private Pupil createNewPupil(Message message, Pupil pupil) {
+        pupil.setChatId(message.getChatId());
+        pupil.setUserName(message.getFrom().getUserName());
+        pupil.setLastName(message.getFrom().getLastName());
+        pupil.setFirstName(message.getFrom().getFirstName());
+        pupilRepo.save(pupil);
+        return pupil;   
     }
 
     private Parent createNewParent(Message message, Parent parent) {
         parent = new Parent();
         parent.setChatId(message.getChatId());
         parent.setAnswer(new Date(System.currentTimeMillis()));
-        parent.setFirstName(message.getFrom().getUserName());
+        parent.setUserName(message.getFrom().getUserName());
         parent.setLastName(message.getFrom().getLastName());
         parent.setFirstName(message.getFrom().getFirstName());
         parent.setStage("1hello");

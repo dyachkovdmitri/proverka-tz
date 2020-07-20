@@ -14,7 +14,6 @@ public class ChildToParent {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     Long parentId;
-    Integer childId;
-    String parentNick;
+    Long childId;
     String childNick;
 }

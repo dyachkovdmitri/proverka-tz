@@ -13,11 +13,12 @@ import java.util.Date;
 public class Pupil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    Long id;
     String name;
     Long chatId;
     Date lastAnswer;
     Date lastQuestion;
     Long interval;
+    String userName,lastName,firstName;
 
 }
