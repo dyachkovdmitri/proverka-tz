@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ChildToParentRepo extends CrudRepository<UserToUser, Long> {
+public interface UserToUserRepo extends CrudRepository<UserToUser, Long> {
     UserToUser findOneByParentId(Long parentId);
     UserToUser findOneByChildId(Long parentId);
 

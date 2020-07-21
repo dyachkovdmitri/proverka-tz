@@ -11,11 +11,11 @@ import java.util.List;
 
 @Repository
 public interface HomeTaskRepo extends CrudRepository<ParsedHomeTask,Integer> {
-   @Query(value="select id from Pupil\n" +
+   @Query(value="select id from User\n" +
            "where id not in (select user_id from home_task_image where date>?1 and date<?2 and image is not null)\n" +
            "and user_id in (?3)", nativeQuery = true)
     List<Integer> unknownImageHomeTask(Date begin, Date end, ArrayList<Integer> ids);
-    @Query(value="select id from Pupil\n" +
+    @Query(value="select id from User\n" +
             "where id not in (select user_id from parsed_home_task where date>?1 and date<?2 and image is not null)\n" +
             "and in user_id in (?3)", nativeQuery = true)
     List<Integer> unknownParsed(Date begin, Date end, ArrayList<Integer> ids);

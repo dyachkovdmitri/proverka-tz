@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepo extends CrudRepository<User, Integer> {
     User findOneByChatId(Long chatId);
     User findOneByUserName(String userName);
+    User findOneByInfoContaining(String userName);
         }

@@ -11,7 +11,7 @@ public class HelpController {
 //    @Autowired
 //    HomeScenario scenario;
 //    @Autowired
-//    PupilRepo pupilRepo;
+//    UserRepo UserRepo;
 //    @Autowired
 //    HomeTaskRepo htRepo;
 //    @Autowired
@@ -27,9 +27,9 @@ public class HelpController {
 //
 //    @GetMapping("/init")
 //    String init() {
-//        Pupil pupil = new Pupil();
-//        pupil.setName("Дима");
-//        pupilRepo.save(pupil);
+//        User User = new User();
+//        User.setName("Дима");
+//        UserRepo.save(User);
 //
 //        ParsedHomeTask ht = new ParsedHomeTask();
 //        ht.setDate(new Date(System.currentTimeMillis()));

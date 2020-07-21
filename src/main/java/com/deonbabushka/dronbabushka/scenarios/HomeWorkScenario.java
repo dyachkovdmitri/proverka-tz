@@ -1,7 +1,7 @@
 package com.deonbabushka.dronbabushka.scenarios;
 
 
-import com.deonbabushka.dronbabushka.entities.Pupil;
+import com.deonbabushka.dronbabushka.entities.User;
 import com.deonbabushka.dronbabushka.entities.User;
 import com.deonbabushka.dronbabushka.repos.ScheduleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class HomeWorkScenario {
 
 @Autowired
     ScheduleRepo scheduleRepo;
-    List<Pupil> getUsersNeedToAttention() {
+    List<User> getUsersNeedToAttention() {
         Integer lesson = getLessonNumberNow();
         List<Integer> free = scheduleRepo.findFree(lesson, new Date(System.currentTimeMillis()).getDay());
 
@@ -29,13 +29,13 @@ public class HomeWorkScenario {
     return 2;
     }
 
-    String onMessage(User pupil, Message message) {
+    String onMessage(User User, Message message) {
 
         return null;
     }
 
 
-//    String getMessage(Pupil pupil) {
+//    String getMessage(User User) {
 //
 //    }
 

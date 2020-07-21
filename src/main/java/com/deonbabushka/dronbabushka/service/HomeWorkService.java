@@ -12,7 +12,7 @@ import java.util.List;
 public class HomeWorkService {
     @Autowired
     HomeTaskRepo htRepo;
-List<Integer> getPupilWithoutScreenShot(ArrayList<Integer> ids){
+List<Integer> getUserWithoutScreenShot(ArrayList<Integer> ids){
     Date begin = new Date(System.currentTimeMillis());
     begin.setHours(23);
     begin.setMinutes(59);
@@ -24,7 +24,7 @@ List<Integer> getPupilWithoutScreenShot(ArrayList<Integer> ids){
     return htRepo.unknownImageHomeTask(begin,end,ids);
 }
 
-    List<Integer> getPupilWithoutParsed(ArrayList<Integer> ids){
+    List<Integer> getUserWithoutParsed(ArrayList<Integer> ids){
         Date begin = new Date(System.currentTimeMillis());
         begin.setHours(23);
         begin.setMinutes(59);
