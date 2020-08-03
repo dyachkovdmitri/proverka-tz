@@ -30,14 +30,36 @@ public class FirstFilter {
     HomeWorkScenario hwScenario;
     @Autowired
     UserToUserRepo u2uRepo;
+    @Autowired
+    AdminScenario adminScenario;
+
+    @Autowired
+    ChildRegScenario childRegScenario;
+    private final Integer ADMIN =93745;
 
 
     public List<SendMessage> onMessage(Message message) {
         User user = userRepo.findOneByChatId(message.getChatId());
-        if (user == null) {
-            user = createUser(message);//первый раз
+        if(user==null){user = createUser(message);}
+
+        switch (user){
+            case(user.getStage().equals(ADMIN)):{return adminScenario.onMessage(message,user);}
+            case(user.getParent()==null):{return whois(message,user);}//непонятно кто
+            case(user.getParent()&&user.getStage()>4):{return sendMessageToAdmin(message, user); break;}//родитель зареган и задает странный вопрос
+            case(user.getParent()&&user.getStage()<5):{return meetScenario.onMessage(user, message);} //родитель не закончил регистрацию
+            case(!user.getParent()&&user.getStage()>5):{return homework(message);}//ребенок с законченной регистрацией
+            case(!user.getParent()&&user.getStage()<5):{return childRegScenario.onMessage(user, message);}//ребенок не закончил регистрацию
+            default: sendMessageToAdmin(message, user);
         }
-        if (user.getParent() == null) {
+return null;
+    }
+
+    private List<SendMessage> sendMessageToAdmin(Message message, User user) {
+        return message(203523943L, user.toString()+"->"+ message.getText());
+    }
+
+    private List<SendMessage> whois(Message message, User user) {
+
             List<SendMessage> res = checkParents(user);//не чей то он ребенок?
             if(message.getText().equalsIgnoreCase("Родитель")){
                 user.setParent(true);
@@ -50,22 +72,12 @@ public class FirstFilter {
             } else if (res != null) {
                 return res; //родитель нашелся
             } else {
-                return message(message.getChatId(), "А вы ребенок или родитель","Родитель","Ученик",null);
-            }
-        }
+                return message(message.getChatId(), "А вы ребенок или родитель","Родитель","Ученик",null);}
 
-        if (user.getParent() && user.getStage() < 5) {
-            return meetScenario.onMessage(user, message);
-        }
+    }
+
+    private List<SendMessage> regParent(Message message) {
         return null;
-
-//
-//        if (!user.getStage().equals("81september")) {
-//
-//
-//        } else {
-//            return hwScenario.onMessage(user, message);//проверка домашнего задания
-//        }
     }
 
     ArrayList<SendMessage> message(Long chatId, String message) {

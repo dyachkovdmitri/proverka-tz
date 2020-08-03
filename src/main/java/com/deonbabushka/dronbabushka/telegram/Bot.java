@@ -36,6 +36,7 @@ public class Bot extends TelegramLongPollingBot {
         for (Update update : updates) {
             System.out.println("message1 " + update.getMessage().getText());
             List<SendMessage> messes= filter.onMessage(update.getMessage());
+            if(messes == null) {messes = new ArrayList<>(); messes.add(new SendMessage(update.getMessage().getChatId(), "минуточку..."));}
 
             for (SendMessage mess : messes) {
                 try {
